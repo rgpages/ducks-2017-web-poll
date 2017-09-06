@@ -1,0 +1,66 @@
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="http://static.registerguard.com/v5/bulldog/dist/1.0.0/20170719/1/css/bulldog.min.css">		
+	</head>
+	<body>
+		<div id="story">
+			{{ intro|safe }}
+		</div>
+		<table class="tbl1">
+			<thead>
+				<tr>
+					<th>
+						Reader rank
+					</th>
+					<th>
+						Sports staff rank
+					</th>
+					<th>
+						Game
+					</th>
+					<th>
+						Poll score
+					</th>
+					<th>
+						Number of rankings
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in data %}
+				<tr>
+					<td>
+						<span class="head">{{ row.readers_rank }}</span>
+					</td>
+					<td>
+						{{ row.sports_staff_rank }}
+					</td>
+					<td>
+						{{ row.game|safe }}
+					</td>
+					<td>
+						{{ "{:,}".format(row.poll_score) }}
+					</td>
+					<td>
+						{{ row.no_of_rankings }}
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot class="caption">
+				<tr>
+					<td colspan="5">
+						{{ explainer|safe }}
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+
+		<script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+
+		<script>
+			var pymChild = new pym.Child({ polling: 500 });
+		</script>    
+	</body>
+</html>
